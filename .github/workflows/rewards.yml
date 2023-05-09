@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   burn_rewards:
@@ -22,7 +22,8 @@ jobs:
           pip install certifi chardet idna requests selenium urllib3 ipapi func_timeout random-word==1.0.7 pyyaml webdriver-manager packaging pyvirtualdisplay
 
       - name: Initial ID
-        run: python rewards.py --headless --fast --accounts ${{ secrets.FIRST_ID}}
+        run: ls -al
+        #run: python rewards.py --headless --fast --accounts ${{ secrets.FIRST_ID}}
     #  - name: Secondary ID
     #    run: python rewards.py --headless --fast --accounts ${{ secrets.SECONDARY_ID}}
       - name: Save logs.txt as an artifact
