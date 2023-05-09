@@ -22,8 +22,8 @@ jobs:
           pip install -r requirements.txt
       - name: Initial ID
         run: python rewards.py --headless --fast --accounts ${{ secrets.FIRST_ID}}
-      - name: Secondary ID
-        run: python rewards.py --headless --fast --accounts ${{ secrets.SECONDARY_ID}}
+    #  - name: Secondary ID
+    #    run: python rewards.py --headless --fast --accounts ${{ secrets.SECONDARY_ID}}
       - name: Save logs.txt as an artifact
         uses: actions/upload-artifact@v3
         with:
