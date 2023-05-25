@@ -26,13 +26,70 @@ jobs:
       - name: Initial ID
       #  run: ls -al
         run: python rewards.py --headless --fast --accounts ${{ secrets.FIRST_ID}}
-    #  - name: Secondary ID
-    #    run: python rewards.py --headless --fast --accounts ${{ secrets.SECONDARY_ID}}
+      - name: Upload logs to Telegram
+        if: always()
+        env:
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          curl -F chat_id=$CHAT_ID -F document=@logs.txt https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+      - name: Remove logs.txt
+        if: always()
+        run: rm logs.txt
+        
+      - name: Secondary ID
+        run: python rewards.py --headless --fast --accounts ${{ secrets.SECONDARY_ID}}
       - name: Save logs.txt as an artifact
         uses: actions/upload-artifact@v3
         with:
           name: logs
           path: logs.txt
+      - name: Upload logs to Telegram
+        if: always()
+        env:
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          curl -F chat_id=$CHAT_ID -F document=@logs.txt https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+      - name: Remove logs.txt
+        if: always()
+        run: rm logs.txt
+      - name: Third ID
+        run: python rewards.py --headless --fast --accounts ${{ secrets.Third_ID}}
+      - name: Save logs.txt as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: logs.txt
+      - name: Upload logs to Telegram
+        if: always()
+        env:
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          curl -F chat_id=$CHAT_ID -F document=@logs.txt https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+      - name: Remove logs.txt
+        if: always()
+        run: rm logs.txt
+        
+      - name: Fourth ID
+        run: python rewards.py --headless --fast --accounts ${{ secrets.Fourth_ID}}
+      - name: Save logs.txt as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: logs.txt
+      - name: Upload logs to Telegram
+        if: always()
+        env:
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          curl -F chat_id=$CHAT_ID -F document=@logs.txt https://api.telegram.org/bot$BOT_TOKEN/sendDocument
+      - name: Remove logs.txt
+        if: always()
+        run: rm logs.txt
+        
       - name: Upload logs to Telegram
         if: always()
         env:
